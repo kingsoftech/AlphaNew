@@ -32,10 +32,6 @@ class NewsFeedRepository {
                     }
 
                     Log.e("result interval2", newsFeedItemList.toString())
-
-
-
-
                 }
 
                 override fun onCancelled(error: DatabaseError) {
