@@ -6,7 +6,7 @@ import androidx.lifecycle.liveData
 import kotlinx.coroutines.delay
 
 class NewsFeedViewModel:ViewModel() {
-
+    var repository= NewsFeedRepository()
     var number = 0
     val  liveData:LiveData<Int> = liveData {
         while (true){
