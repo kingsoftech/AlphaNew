@@ -15,7 +15,6 @@ class NewsFeedActivity : AppCompatActivity() {
                 .setContentView(this, R.layout.activity_news_feed)
 
 
-
         val viewModel: NewsFeedViewModel = ViewModelProvider(this)[NewsFeedViewModel::class.java]
 
         binding.lifecycleOwner = this
