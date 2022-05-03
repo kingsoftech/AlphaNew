@@ -14,14 +14,14 @@ class NewsFeedRepository {
         val description: String = ""
     )
 
-    val NewFeedItem = NewsFeedItem("Corona  virus", "2019 viral virus breakout")
-    val database = FirebaseDatabase.getInstance()
-    val myStore = database.reference.child("NewsFeed")
-        .setValue(NewFeedItem)
+    //val NewFeedItem = NewsFeedItem("Corona  virus", "2019 viral virus breakout")
+    //val database = FirebaseDatabase.getInstance()
+    //val myStore = database.reference.child("NewsFeed")
+      //  .setValue(NewFeedItem)
 
 
     init {
-        myStore.addOnCompleteListener {
+
             Firebase.database.getReference("NewsFeed").addValueEventListener(object: ValueEventListener{
                 override fun onDataChange(snapshot: DataSnapshot) {
                     Log.e("Result interval", snapshot.value.toString())
@@ -40,6 +40,6 @@ class NewsFeedRepository {
             }
             )
         }
-    }
+
 
 }
