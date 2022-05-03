@@ -14,24 +14,26 @@ class NewsFeedRepository {
         val description: String = ""
     )
 
-    //val NewFeedItem = NewsFeedItem("Corona  virus", "2019 viral virus breakout")
-    //val database = FirebaseDatabase.getInstance()
-    //val myStore = database.reference.child("NewsFeed")
-      //  .setValue(NewFeedItem)
+    val NewFeedItem = NewsFeedItem("Corona  virus", "2019 viral virus breakout")
+    val database = FirebaseDatabase.getInstance()
+    val myStore = database.reference.child("NewsFeed")
+        .setValue(NewFeedItem)
 
 
     init {
-
-            Firebase.database.getReference("NewsFeed").addValueEventListener(object: ValueEventListener{
+        myStore.addOnCompleteListener {
+            database.reference.child("NewsFeed").addValueEventListener(object: ValueEventListener{
                 override fun onDataChange(snapshot: DataSnapshot) {
-                    Log.e("Result interval", snapshot.value.toString())
+                    Log.e("Result interval", snapshot.toString())
 
-                    val newsFeedItemList = snapshot.children.map {
+                    val newsFeedItemList = snapshot.child("NewsFeed").children.map {
                         dataSnapshot ->
-                            dataSnapshot.getValue(NewsFeedItem::class.java)!!
+                            dataSnapshot.getValue(NewsFeedItem::class.java)
                     }
 
-                    Log.e("result interval2", newsFeedItemList.toString())
+                    Log.e("Result interval1", newsFeedItemList[1].toString())
+
+
                 }
 
                 override fun onCancelled(error: DatabaseError) {
@@ -40,6 +42,6 @@ class NewsFeedRepository {
             }
             )
         }
-
+    }
 
 }
